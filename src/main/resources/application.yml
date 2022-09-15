@@ -1,0 +1,35 @@
+# default
+spring:
+  profiles:
+    active: local
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local
+  batch:
+    job:
+      names: ${job.name:NONE}
+      enable: false
+    jdbc:
+      initialize-schema: ALWAYS
+
+  datasource:
+    url: jdbc:mariadb://localhost:3307/shop
+    username: root
+    password: 1234
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  jpa:
+    show-sql: true
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: test
+  jpa:
+    database: h2
